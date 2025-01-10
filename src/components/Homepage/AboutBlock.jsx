@@ -3,8 +3,8 @@
 import React, { useEffect } from 'react';
 import about_bg from '../../assets/images/about.jpg'
 
-function AboutBlock() {
-  
+function AboutBlock({ aboutblock }) {
+  console.log(aboutblock);
   return (
     <>
       <div className="container-xxl py-5">
@@ -12,35 +12,25 @@ function AboutBlock() {
           <div className="row g-5">
             <div className="col-lg-6 wow animated fadeInUp" data-wow-delay="0.1s" style={{ minHeight: '400px'}}>
               <div className="position-relative h-100">
-                <img className="img-fluid position-absolute w-100 h-100" src={about_bg} alt="" style={{ objectFit: 'cover'}} />
+                <img className="img-fluid position-absolute w-100 h-100" src={aboutblock.left_image.url} alt={aboutblock.left_image.alt}   style={{ objectFit: 'cover'}} />
               </div>
             </div>
             <div className="col-lg-6 wow animated fadeInUp" data-wow-delay="0.3s">
-              <h6 className="section-title bg-white text-start text-primary pe-3">About Us</h6>
-              <h1 className="mb-4">Welcome to <span className="text-primary">Tourist</span></h1>
-              <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-              <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+              <h6 className="section-title bg-white text-start text-primary pe-3">{aboutblock.sub_heading}</h6>
+              <h1 className="mb-4" dangerouslySetInnerHTML={{ __html: aboutblock.heading }} />
+              <div className="mb-4" dangerouslySetInnerHTML={{ __html: aboutblock.content }} />
               <div className="row gy-2 gx-4 mb-4">
-                <div className="col-sm-6">
-                  <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>First className Flights</p>
-                </div>
-                <div className="col-sm-6">
-                  <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>Handpicked Hotels</p>
-                </div>
-                <div className="col-sm-6">
-                  <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>5 Star Accommodations</p>
-                </div>
-                <div className="col-sm-6">
-                  <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>Latest Model Vehicles</p>
-                </div>
-                <div className="col-sm-6">
-                  <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>150 Premium City Tours</p>
-                </div>
-                <div className="col-sm-6">
-                  <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>24/7 Service</p>
-                </div>
+                {Array.isArray(aboutblock.about_content_list) && aboutblock.about_content_list.length > 0 ? (
+                  aboutblock.about_content_list.map((item, index) => (
+                    <div className="col-sm-6">
+                      <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>{item.list}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>Loading...</p>
+                )}
               </div>
-              <a className="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+              <a className="btn btn-primary py-3 px-5 mt-2" href={aboutblock.button.url} target={aboutblock.button.target}>{aboutblock.button.title}</a>
             </div>
           </div>
         </div>

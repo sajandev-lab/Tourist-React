@@ -1,25 +1,47 @@
-import AboutBlock from "../components/Homepage/AboutBlock"
-import ServiceBlock from "../components/Homepage/ServiceBlock"
-import DestinationBlock from "../components/Homepage/DestinationBlock"
-import PackageBlock from "../components/Homepage/PackageBlock"
-import BookingBlock from "../components/Homepage/BookingBlock"
-import ProcessBlock from "../components/Homepage/ProcessBlock"
-import TeamBlock from "../components/Homepage/TeamBlock"
-import TestimonialBlock from "../components/Homepage/TestimonialBlock"
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import DynamicBlock from '../components/blocks/DynamicBlock';
+
+
 
 function Homepage() {
+  const [pageData, setPageData] = useState();
+  const [error, setError] = useState(null);
+  const pageId = 16; // Replace with your actual page ID
+  const apiUrl = `https://dev-tourist-react.pantheonsite.io/wp-json/wp/v2/pages/${pageId}`; // Adjust as needed
+
+  useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const response = await axios.get(apiUrl);
+        setPageData(response.data.acf); // Assuming ACF data is under 'acf'
+      } catch (err) {
+        console.error('Error fetching page data:', err);
+        setError(err);
+      }
+    };
+
+    fetchPageData();
+  }, [apiUrl]);
+
+  if (error) {
+    return <div>Error loading page data.</div>;
+  }
+  //console.log(pageData);
+  if (!pageData) {
+    return <div>Loading...</div>;
+  }
+
+  // Check if 'flexible_content_field' exists
+  if (!pageData) {
+    return <div>No content available.</div>;
+  }
+
   return (
-    <>
-      <AboutBlock />
-      <ServiceBlock />
-      <DestinationBlock />
-      <PackageBlock />
-      <BookingBlock />
-      <ProcessBlock />
-      <TeamBlock />
-      <TestimonialBlock />
-    </>
-  )
+    <div>
+      <DynamicBlock block={pageData} />
+    </div>
+  );
 }
 
-export default Homepage
+export default Homepage;

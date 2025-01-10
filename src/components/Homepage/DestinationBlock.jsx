@@ -3,14 +3,14 @@ import destination_2 from '../../assets/images/destination-2.jpg'
 import destination_3 from '../../assets/images/destination-3.jpg'
 import destination_4 from '../../assets/images/destination-4.jpg'
 
-function DestinationBlock() {
+function DestinationBlock({destinationblock}) {
   return (
     <>
         <div className="container-xxl py-5 destination">
             <div className="container">
                 <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 className="section-title bg-white text-center text-primary px-3">Destination</h6>
-                    <h1 className="mb-5">Popular Destination</h1>
+                    <h6 className="section-title bg-white text-center text-primary px-3">{destinationblock.sub_heading}</h6>
+                    <h1 className="mb-5">{destinationblock.heading}</h1>
                 </div>
                 <div className="row g-3">
                     <div className="col-lg-7 col-md-6">

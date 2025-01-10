@@ -17,6 +17,7 @@ import TopHeader from './components/TopHeader';
 import Header from './components/Header';
 import Homepage from './pages/Homepage'
 import Footer from './components/Footer'
+import ResultsPage from './components/ResultsPage'
 
 function App() {
 
@@ -32,8 +33,10 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Homepage />} />
+          <Route path="/results" element={<ResultsPage />} />
         </Routes>
       </Router>
+      
       <Footer />
     </>
   )
