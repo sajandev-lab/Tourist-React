@@ -22,7 +22,7 @@ function AboutBlock({ aboutblock }) {
               <div className="row gy-2 gx-4 mb-4">
                 {Array.isArray(aboutblock.about_content_list) && aboutblock.about_content_list.length > 0 ? (
                   aboutblock.about_content_list.map((item, index) => (
-                    <div className="col-sm-6">
+                    <div className="col-sm-6" key={index}>
                       <p className="mb-0"><i className="fa fa-arrow-right text-primary me-2"></i>{item.list}</p>
                     </div>
                   ))

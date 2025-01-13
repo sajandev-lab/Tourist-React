@@ -13,7 +13,7 @@ function ServiceBlock({serviceblock}) {
           <div className="row g-4">
               {Array.isArray(serviceblock.services_list) && serviceblock.services_list.length > 0 ? (
                   serviceblock.services_list.map((service_item, index) => (
-                    <div className="col-lg-3 col-sm-6 wow animated fadeInUp" data-wow-delay={`${0.1 * (index + 1)}s`}>
+                    <div className="col-lg-3 col-sm-6 wow animated fadeInUp" key={index} data-wow-delay={`${0.1 * (index + 1)}s`}>
                       <div className="service-item rounded pt-3">
                         <div className="p-4">
                           <i className={`fa fa-3x ${service_item.add_icon_text} fa-3x text-primary mb-4`}></i>

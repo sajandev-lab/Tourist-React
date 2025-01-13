@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TopNavMenu from '../components/TopNav';
 
 function Header() {
   const [isSticky, setIsSticky] = useState(false);
@@ -61,23 +62,7 @@ function Header() {
             <span className="fa fa-bars"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarCollapse">
-            <div className="navbar-nav ms-auto py-0">
-              <a href="index.html" className="nav-item nav-link active">Home</a>
-              <a href="about.html" className="nav-item nav-link">About</a>
-              <a href="service.html" className="nav-item nav-link">Services</a>
-              <a href="package.html" className="nav-item nav-link">Packages</a>
-              <div className={`nav-item dropdown ${isDropdownOpen ? 'show' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                <div className={`dropdown-menu m-0 ${isDropdownOpen ? 'show' : ''}`}  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                  <a href="destination.html" className="dropdown-item">Destination</a>
-                  <a href="booking.html" className="dropdown-item">Booking</a>
-                  <a href="team.html" className="dropdown-item">Travel Guides</a>
-                  <a href="testimonial.html" className="dropdown-item">Testimonial</a>
-                  <a href="404.html" className="dropdown-item">404 Page</a>
-                </div>
-              </div>
-              <a href="contact.html" className="nav-item nav-link">Contact</a>
-            </div>
+            <TopNavMenu />
             <a href="" className="btn btn-primary rounded-pill py-2 px-4">Register</a>
           </div>
         </nav>
