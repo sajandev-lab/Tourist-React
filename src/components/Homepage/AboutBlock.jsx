@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import about_bg from '../../assets/images/about.jpg'
 
 function AboutBlock({ aboutblock }) {
-  console.log(aboutblock);
+  //console.log(aboutblock);
   return (
     <>
       <div className="container-xxl py-5">

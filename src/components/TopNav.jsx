@@ -29,11 +29,11 @@ const TopNavMenu = () => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div class="navbar-nav ms-auto py-0">
+        <div className="navbar-nav ms-auto py-0">
             {menu.map((item, index) => {
-                const isActive = location.pathname === new URL(item.href).pathname; // Compare current path with menu link
+                //const isActive = location.pathname === new URL(item.href).pathname; // Compare current path with menu link ${isActive ? 'active' : ''}
                 return (
-                    <a href={item.href} className={`nav-item nav-link ${isActive ? 'active' : ''}`}>{item.name}</a>
+                    <a key={index} href={item.href} className={`nav-item nav-link `}>{item.name}</a>
                 );
             })}
         </div>

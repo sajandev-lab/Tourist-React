@@ -22,7 +22,7 @@ function BookingBlock({bookingblock}) {
                     }
                 );
                 setFormHtml(response.data.acf);
-                console.log(formHtml);
+                //console.log(formHtml);
             } catch (error) {
                 console.error("Error fetching the form:", error);
             }

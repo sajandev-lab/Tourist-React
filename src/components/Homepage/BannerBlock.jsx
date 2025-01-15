@@ -20,7 +20,7 @@ function BannerBlock({bannerblock}) {
       backgroundRepeat: 'no-repeat', // Avoid repeating
       backgroundPosition: 'center center', // Center the image
   };
-  console.log(handleSearch);
+  //console.log(handleSearch);
   return (
     <>
       <div className="container-fluid bg-primary py-5 mb-5 hero-header" style={heroheader}>
