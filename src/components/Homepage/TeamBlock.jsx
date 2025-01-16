@@ -2,11 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 
-import team_1 from '../../assets/images/team-1.jpg'
-import team_2 from '../../assets/images/team-2.jpg'
-import team_3 from '../../assets/images/team-3.jpg'
-import team_4 from '../../assets/images/team-4.jpg'
-
 function TeamBlock({teamblock}) {
     const showContent = teamblock.show_team_list;
     //console.log(showContent);
@@ -15,7 +10,7 @@ function TeamBlock({teamblock}) {
 
     useEffect(() => {
     // Replace with your WordPress site URL and custom post type endpoint
-    fetch('https://dev-tourist-react.pantheonsite.io/wp-json/wp/v2/meet_the_team?_embed')
+    fetch('https://dev-tourist-react.pantheonsite.io/wp-json/wp/v2/meet_the_team')
         .then((response) => response.json())
         .then((data) => {
             setPosts(data);
@@ -30,7 +25,7 @@ function TeamBlock({teamblock}) {
     if (loading) {
         return <p>Loading...</p>;
     }
-    //console.log(posts);
+    console.log(posts);
   return (
     <>
         <div className="container-xxl py-5">
@@ -44,39 +39,29 @@ function TeamBlock({teamblock}) {
                 {showContent ? (
                     <div className="row g-4">
                     {posts.length > 0 ? (
-                        posts.map((post) => {
+                        posts.map((post, index) => {
                             return (
-                                <div className="col-lg-3 col-md-6 wow fadeInUp" key={post.id} data-wow-delay="0.1s">
+                                <div className="col-lg-3 col-md-6 wow fadeInUp" key={post.id} data-wow-delay={`${0.1 * (index + 1)}s`}>
                                     <div className="team-item">
                                         <div className="overflow-hidden">
-                                            {post._embedded && post._embedded["wp:featuredmedia"] ? (
-                                                
-                                                <img
-                                                    src={post._embedded["wp:featuredmedia"][0].source_url}
-                                                    alt={post._embedded["wp:featuredmedia"][0].alt_text || "Featured Image"}
-                                                    style={{ maxWidth: "100%" }}
-                                                />
-                                            ) : (
-                                                <p>No featured image available</p>
-                                            )}
+                                        {post.featured_image_url ? (
+                                            <img className='img-fluid' src={post.featured_image_url} alt={post.title.rendered} />
+                                        ) : (
+                                            <p>No featured image</p>
+                                        )}
                                         </div>
-                                        <div
-                                        className="position-relative d-flex justify-content-center"
-                                        style={{ marginTop: '-19px' }}
-                                        >
-                                        <a className="btn btn-square mx-1" href="#">
-                                            <i className="fab fa-facebook-f"></i>
-                                        </a>
-                                        <a className="btn btn-square mx-1" href="#">
-                                            <i className="fab fa-twitter"></i>
-                                        </a>
-                                        <a className="btn btn-square mx-1" href="#">
-                                            <i className="fab fa-instagram"></i>
-                                        </a>
-                                        </div>
+                                        {post.acf && post.acf.social_icons && (
+                                            <div className="position-relative d-flex justify-content-center" style={{ marginTop: '-19px' }} >
+                                                {post.acf.social_icons.map((item, index) => (
+                                                    <a key={index} className="btn btn-square mx-1" href={item.url}>
+                                                        <i className={`fab ${item.add_icon_text}`}></i>
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        )}
                                         <div className="text-center p-4">
-                                        <h5 className="mb-0">{post.title.rendered}</h5>
-                                        <small>Designation</small>
+                                            <h5 className="mb-0">{post.title.rendered}</h5>
+                                            <small>{post.acf && post.acf.add_designation}</small>
                                         </div>
                                     </div>
                                 </div>
