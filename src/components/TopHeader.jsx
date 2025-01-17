@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function TopHeader() {
-  const [option, setOption] = useState(null); // Holds the fetched data
+    const [option, setOption] = useState(null); // Holds the fetched data
     const [error, setError] = useState(null); // Holds error messages
     const [loading, setLoading] = useState(true); // Tracks loading state
 
