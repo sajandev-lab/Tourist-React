@@ -18,6 +18,8 @@ import Header from './components/Header';
 import Homepage from './pages/Homepage'
 import Footer from './components/Footer'
 import ResultsPage from './components/ResultsPage'
+import AboutPage from './pages/Aboutpage';
+import Servicespage from './pages/Servicespage';
 
 function App() {
 
@@ -34,9 +36,10 @@ function App() {
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path="/results" element={<ResultsPage />} />
+          <Route path='/about' element={<AboutPage/>} />
+          <Route path='/services' element={<Servicespage/>} />
         </Routes>
       </Router>
-      
       <Footer />
     </>
   )

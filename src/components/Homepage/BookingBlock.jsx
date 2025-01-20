@@ -44,7 +44,47 @@ function BookingBlock({bookingblock}) {
                         </div>
                         <div className="col-md-6">
                             <h1 className="text-white mb-4">{bookingblock.form_heading}</h1>
-                            <div dangerouslySetInnerHTML={{ __html: formHtml }} />
+                            <form>
+                                <div className="row g-3">
+                                    <div className="col-md-6">
+                                        <div className="form-floating">
+                                            <input type="text" className="form-control bg-transparent" id="name" placeholder="Your Name" />
+                                            <label htmlFor="name">Your Name</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-floating">
+                                            <input type="email" className="form-control bg-transparent" id="email" placeholder="Your Email" />
+                                            <label htmlFor="email">Your Email</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-floating date" id="date3" data-target-input="nearest">
+                                            <input type="text" className="form-control bg-transparent datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                                            <label htmlFor="datetime">Date & Time</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-floating">
+                                            <select className="form-select bg-transparent" id="select1">
+                                                <option value="1">Destination 1</option>
+                                                <option value="2">Destination 2</option>
+                                                <option value="3">Destination 3</option>
+                                            </select>
+                                            <label htmlFor="select1">Destination</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-12">
+                                        <div className="form-floating">
+                                            <textarea className="form-control bg-transparent" placeholder="Special Request" id="message" style={{height: '100px'}}></textarea>
+                                            <label htmlFor="message">Special Request</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-12">
+                                        <button className="btn btn-outline-light w-100 py-3" type="submit">Book Now</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Breadcrumb from '../Breadcrumb';
+const isHomePage = location.pathname === '/';
 
 function BannerBlock({bannerblock}) {
   const [query, setQuery] = useState('');
@@ -29,13 +31,17 @@ function BannerBlock({bannerblock}) {
               <div className="col-lg-10 pt-lg-5 mt-lg-5 text-center">
                 <h1 className="display-3 text-white mb-3 animated slideInDown">{bannerblock.heading}</h1>  
                 <p className="fs-4 text-white mb-4 animated slideInDown" dangerouslySetInnerHTML={{ __html: bannerblock.content }} />
-                <div className="position-relative w-75 mx-auto animated slideInDown">
-                  <form onSubmit={handleSearch}>
-                    <input className="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Eg: Thailand"
-                    />
-                    <button className="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style={{ marginTop: '7px'}} type="submit">Search</button>
-                  </form>
-                </div>
+                {isHomePage ? (
+                  <div className="position-relative w-75 mx-auto animated slideInDown">
+                    <form onSubmit={handleSearch}>
+                      <input className="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Eg: Thailand"
+                      />
+                      <button className="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style={{ marginTop: '7px'}} type="submit">Search</button>
+                    </form>
+                  </div>
+                ) : (
+                  <Breadcrumb />
+                )}
               </div>
             </div>
           </div>
